@@ -1,0 +1,8 @@
+openai
+lxml
+llama-index
+argparse
+openai_pricing_calc_draft==0.4.1
+redis
+torch
+flask

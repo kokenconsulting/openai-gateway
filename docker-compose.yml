@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  redis-vecdb:
+    image: redis/redis-stack:latest
+    container_name: openai-gw-redis-vecdb
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+  ail-rest-api:
+    #image: ail-rest-api:latest
+    build: ./gateway/
+    container_name: openai-gw-api
+    ports:
+      - "5001:5000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - REDIS_URL=redis://redis-vecdb:6379
+    volumes:
+      - ./data:/app/data
